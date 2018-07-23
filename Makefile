@@ -1,5 +1,5 @@
-UH_programs_URL = 'http://publications.uh.edu/content.php?catoid=21&navoid=5494'
-GENERATED_FILES = data/UHD_programs_page.html data/program_links.csv program_data
+SHSU_programs_URL = 'http://catalog.shsu.edu/degree-programs/'
+GENERATED_FILES = data/SHSU_programs_page.html data/program_links.csv program_data
 
 all: $(GENERATED_FILES)
 
@@ -19,11 +19,11 @@ data/extracted_program_data.csv: program_data
 program_data: data/program_links.csv
 	cd data/program_data && $(MAKE)
 
-data/program_links.csv: data/UHD_programs_page.html
+data/program_links.csv: data/SHSU_programs_page.html
 	source env/bin/activate; \
 	cat $< | python processors/extract_program_links.py > $@
 
-data/UHD_programs_page.html:
+data/SHSU_programs_page.html:
 	source env/bin/activate; \
-	python processors/jsget.py $(UH_programs_URL) > $@
+	python processors/jsget.py $(SHSU_programs_URL) > $@
 

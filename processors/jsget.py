@@ -1,6 +1,7 @@
 import click
 import sys
 from selenium import webdriver
+from time import sleep
 
 @click.command()
 @click.argument('URL')
@@ -18,5 +19,6 @@ def main(output,url=''):
     else:
         sys.stdout.write(html)
     driver.close()
+
 if __name__ == "__main__":
     main()
